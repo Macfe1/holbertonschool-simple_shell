@@ -2,7 +2,13 @@
 #define _SHELL_H_
 
 /*Libraries*/
-#include <stdio.h> /*
-*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+/*Prototypes*/
+int main();
 
 #endif /*_SHELL_H_*/
