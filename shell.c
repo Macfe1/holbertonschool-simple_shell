@@ -1,16 +1,15 @@
 #include "shell.h"
 
 /**
+ * main - entry point of the shell
  *
- *
- *
+ * Return: 0 if success
  */
-int main ()
+int main(void)
 {
-	char *line_buffer = NULL, *array[];
+	char *line_buffer = NULL;
 	size_t len = 0;
 	ssize_t n_letters_read;
-	pid_t son_pid;
 	int pid_status = 0;
 
 	while (1)
@@ -22,7 +21,7 @@ int main ()
 		{
 			if (feof(stdin))
 			{
-				printf('\n');
+				printf("\n");
 				free(line_buffer);
 				exit(0);
 			}
@@ -30,41 +29,19 @@ int main ()
 			free(line_buffer);
 			exit(1);
 		}
-
 		if (line_buffer[n_letters_read - 1] == '\n')
 			line_buffer[n_letters_read - 1] = '\0';
-
 		if (line_buffer[0] == '\0')
 			continue;
+		son_process(line_buffer);
 
-		son_pid = fork();
-	
-		if (son_pid == -1)
+		if (wait(&pid_status) == -1)
 		{
-			perror("error in the fork");
 			free(line_buffer);
+			perror("Error in wait in the father process");
 			exit(1);
-		}
-	
-		if (son_pid == 0)
-		{
-			array[0] = line_buffer;
-			array[1] = NULL;
-			execv(line_buffer, array);
-		}
-
-		if (execv == -1)
-		{
-			perror("execv error");
-			exit(1);
-		}
-
-		if (son_pid > 0)
-		{
-			wait(&pid_status);
 		}
 	}
-
 	free(line_buffer);
 	return (0);
 }

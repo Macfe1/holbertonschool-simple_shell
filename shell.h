@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 
 /*Prototypes*/
-int main();
+int main(void);
+void son_process(char *line_buffer);
 
 #endif /*_SHELL_H_*/
