@@ -2,22 +2,25 @@
 
 ## Description
 
-The Simple Shell is a basic command-line interpreter designed to provide fundamental shell functionalities.
+The Simple Shell is a basic command-line interpreter designed to provide fundamental shell functionalities. It allows users to execute commands, manage processes, and navigate the filesystem.
 
 ### Prerequisites
 
-Please compile with gcc like the next example:
+To compile the shell, use GCC compiler with the following command:
 
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
 ## How it works?
 
-To start the exe file
+To start the shell lets run the executable file like this:
 
-* 1. ./hsh
-* 2. #cisfun /bin/ls
+* ./hsh
 
-To exit
+To use a comand in the shell use:
+
+* #cisfun /bin/ls
+
+To exit the shell use:
 
 * Ctrl + C
 
