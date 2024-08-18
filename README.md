@@ -24,4 +24,11 @@ To exit the shell use:
 
 * Ctrl + C
 
+## Updating the Authors File
+
+To update the list of contributors, execute the following command from the root of the project
+
+./generate-authors.sh
+
+This will generate or update the `AUTHORS` file in the repository root with all the names and emails of the contributors, in alphabetical order.
 
