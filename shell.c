@@ -25,7 +25,7 @@ int main(void)
 				free(line_buffer);
 				exit(0);
 			}
-			perror("is in getline");
+			perror("error in getline");
 			free(line_buffer);
 			exit(1);
 		}
