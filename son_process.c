@@ -1,6 +1,23 @@
 #include "shell.h"
 
 /**
+ * error_tmp_dup - Manage the error when strdup fails
+ *
+ * @tmp_line_buffer: The temporal buffer that I tried to duplicate.
+ *
+ * Return: Returns 1 to indicate failure
+ */
+int error_tmp_dup(char *tmp_line_buffer)
+{
+	if (tmp_line_buffer == NULL)
+	{
+		perror("error in the strdup of line_buffer");
+		return (1);
+	}
+	return (0);
+}
+
+/**
  * son_process - to create the son process with the fork
  *
  * @line_buffer: is what we received from the user
@@ -10,21 +27,18 @@
 void son_process(char *line_buffer)
 {
 	char **array = NULL;
-	char *token = NULL;
 	int words_count = 0;
-	char *tmp_line_buffer = strdup(line_buffer);
+	char *token = NULL, *tmp_line_buffer = strdup(line_buffer);
 	pid_t son_pid;
 
-	if (tmp_line_buffer == NULL)
+	if (error_tmp_dup(tmp_line_buffer))
 	{
-		perror("error in the strdup of line_buffer");
 		return;
 	}
 	array = (char **) malloc(MAX_WORDS * sizeof(char *));
 	if (array == NULL)
 	{
-		free(tmp_line_buffer);
-		perror("error in memory allocation");
+		malloc_error(tmp_line_buffer, array);
 		return;
 	}
 	token = strtok(tmp_line_buffer, SEPARATOR);

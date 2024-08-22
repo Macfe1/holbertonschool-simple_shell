@@ -16,7 +16,7 @@ void execvp_function(char **array, char *tmp_line_buffer)
 	{
 		perror("execvp error");
 		free(tmp_line_buffer);
-		for (word_counter_free = 0; 
+		for (word_counter_free = 0;
 				array[word_counter_free] != NULL; word_counter_free++)
 		{
 			free(array[word_counter_free]);
