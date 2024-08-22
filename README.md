@@ -19,10 +19,12 @@ To start the shell lets run the executable file like this:
 To use a comand in the shell use:
 
 * #cisfun /bin/ls
+* #cisfun ls
 
 To exit the shell use:
 
 * Ctrl + C
+* Ctrl + D
 
 ## Updating the Authors File
 
