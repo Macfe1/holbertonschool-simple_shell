@@ -14,5 +14,5 @@
 /*Prototypes*/
 int main(void);
 void son_process(char *line_buffer);
-
+void execvp_function(char **array, char *tmp_line_buffer);
 #endif /*_SHELL_H_*/
