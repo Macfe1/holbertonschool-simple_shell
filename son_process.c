@@ -33,6 +33,7 @@ void son_process(char *line_buffer)
 
 	if (error_tmp_dup(tmp_line_buffer))
 	{
+		free(line_buffer);
 		return;
 	}
 	array = (char **) malloc(MAX_WORDS * sizeof(char *));
@@ -48,6 +49,8 @@ void son_process(char *line_buffer)
 		if (array[words_count] == NULL)
 		{
 			perror("error in the strdup");
+			free(tmp_line_buffer);
+			free(array);
 			exit(1);
 		}
 		token = strtok(NULL, SEPARATOR);

@@ -23,7 +23,7 @@ int main(void)
 		n_letters_read = getline(&line_buffer, &len, stdin);
 		if (n_letters_read == -1)
 		{
-			if (feof(stdin))
+			if (errno == 0)
 			{
 				if (interactive_mode == 1)
 					printf("\n");
