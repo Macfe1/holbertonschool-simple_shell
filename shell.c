@@ -11,17 +11,22 @@ int main(void)
 	size_t len = 0;
 	ssize_t n_letters_read;
 	int pid_status = 0;
+	int interactive_mode = isatty(STDIN_FILENO);
 
 	while (1)
 	{
-		printf("#cisfun$ ");
-		fflush(stdout);
+		if (interactive_mode == 1)
+		{
+			printf("#cisfun$ ");
+			fflush(stdout);
+		}
 		n_letters_read = getline(&line_buffer, &len, stdin);
 		if (n_letters_read == -1)
 		{
 			if (feof(stdin))
 			{
-				printf("\n");
+				if (interactive_mode == 1)
+					printf("\n");
 				free(line_buffer);
 				exit(0);
 			}
@@ -34,7 +39,6 @@ int main(void)
 		if (line_buffer[0] == '\0')
 			continue;
 		son_process(line_buffer);
-
 		if (wait(&pid_status) == -1)
 		{
 			free(line_buffer);
