@@ -27,19 +27,19 @@ int error_tmp_dup(char *tmp_line_buffer)
 void son_process(char *line_buffer)
 {
 	char **array = NULL;
-	int words_count = 0;
+	int words_count = 0, words_free = 0;
 	char *token = NULL, *tmp_line_buffer = strdup(line_buffer);
 	pid_t son_pid;
 
 	if (error_tmp_dup(tmp_line_buffer))
 	{
-		free(line_buffer);
 		return;
 	}
 	array = (char **) malloc(MAX_WORDS * sizeof(char *));
 	if (array == NULL)
 	{
 		malloc_error(tmp_line_buffer, array);
+		free(tmp_line_buffer);
 		return;
 	}
 	token = strtok(tmp_line_buffer, SEPARATOR);
@@ -50,6 +50,8 @@ void son_process(char *line_buffer)
 		{
 			perror("error in the strdup");
 			free(tmp_line_buffer);
+			for (;words_free < words_count; words_free++)
+				free(array[words_free]);
 			free(array);
 			exit(1);
 		}
@@ -61,12 +63,19 @@ void son_process(char *line_buffer)
 	if (son_pid == -1)
 	{
 		perror("error in the fork");
-		free(line_buffer);
+		free(tmp_line_buffer);
+		for (;words_free < words_count; words_free++)
+				free(array[words_free]);
 		free(array);
 		exit(1);
 	}
 	if (son_pid == 0)
+	{
 		execvp_function(array, tmp_line_buffer);
+		exit(1);
+	}
 	free(tmp_line_buffer);
+	for (;words_free < words_count; words_free++)
+		free(array[words_free]);
 	free(array);
 }
