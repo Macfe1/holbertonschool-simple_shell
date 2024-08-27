@@ -45,6 +45,8 @@ int main(void)
 			perror("Error in wait in the father process");
 			exit(1);
 		}
+		if (interactive_mode == 0)
+			break;
 	}
 	free(line_buffer);
 	return (0);
