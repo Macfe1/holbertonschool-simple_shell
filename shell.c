@@ -20,12 +20,30 @@ int main(void)
 			printf("#cisfun$ ");
 			fflush(stdout);
 		}
-		n_letters_read = getline(&line_buffer, &len, stdin);
+		while ((n_letters_read = getline(&line_buffer, &len, stdin)) != -1)
+		{
+			if (n_letters_read == 0)
+				break;		
+
+			if (line_buffer[n_letters_read - 1] == '\n')
+				line_buffer[n_letters_read - 1] = '\0';
+
+			if (line_buffer[0] == '\0')
+				continue;
+			
+			son_process(line_buffer);
+			if (wait(&pid_status) == -1)
+			{
+				free(line_buffer);
+				perror("Error in wait in the father process");
+				exit(1);
+			}
+		}
 		if (n_letters_read == -1)
 		{
 			if (errno == 0)
 			{
-				if (interactive_mode == 1)
+				if (interactive_mode)
 					printf("\n");
 				free(line_buffer);
 				exit(0);
@@ -34,20 +52,9 @@ int main(void)
 			free(line_buffer);
 			exit(1);
 		}
-		if (line_buffer[n_letters_read - 1] == '\n')
-			line_buffer[n_letters_read - 1] = '\0';
-		if (line_buffer[0] == '\0')
-			continue;
-		son_process(line_buffer);
-		if (wait(&pid_status) == -1)
-		{
-			free(line_buffer);
-			perror("Error in wait in the father process");
-			exit(1);
-		}
 		if (interactive_mode == 0)
 			break;
-	}
+	}	
 	free(line_buffer);
 	return (0);
 }
