@@ -42,10 +42,8 @@ int main(void)
 
 		if (line_buffer[0] == '\0')
 			continue;
-		if (
-			line_buffer[0] == ' ' 
-			&& line_buffer[1] == ' '
-			&& line_buffer[2] == ' ')
+		
+		if (is_empty(line_buffer))
 			continue;
 
 		status = son_process(line_buffer);

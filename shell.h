@@ -18,4 +18,5 @@ int son_process(char *line_buffer);
 void execvp_function(char **array, char *tmp_line_buffer);
 void malloc_error(char *tmp_line_buffer, char **array);
 int error_tmp_dup(char *tmp_line_buffer);
+int is_empty(char *line_buffer);
 #endif /*_SHELL_H_*/
