@@ -48,7 +48,7 @@ int son_process(char *line_buffer)
 		{
 			perror("error in the strdup");
 			malloc_error(tmp_line_buffer, array);
-			return (1);
+			return (-1);
 		}
 		token = strtok(NULL, "\n ");
 		words_count++;
@@ -72,7 +72,7 @@ int son_process(char *line_buffer)
 	if (son_pid == 0)
 	{
 		execvp_function(array, tmp_line_buffer);
-		return (1);
+		exit(1);
 	}
 	free(tmp_line_buffer);
 	for (;words_free < words_count; words_free++)
