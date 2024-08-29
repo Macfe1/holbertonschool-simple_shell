@@ -42,6 +42,9 @@ int main(void)
 
 		if (line_buffer[0] == '\0')
 			continue;
+		if (line_buffer[0] == ' ' && line_buffer[1] == ' ')
+			continue;
+
 		status = son_process(line_buffer);
 		if (wait(&pid_status) == -1)
 		{
