@@ -33,7 +33,7 @@ int main(void)
 				free(line_buffer);
 				exit(0);
 			}
-			perror("error in getline");
+			perror("Error in getline");
 			free(line_buffer);
 			exit(1);
 		}
@@ -45,6 +45,16 @@ int main(void)
 		
 		if (is_empty(line_buffer))
 			continue;
+
+		if ((strcmp(line_buffer, "env") == 0) || 
+				(strcmp(line_buffer, "printenv") == 0))
+		{
+			get_env(NULL);
+			continue;
+		}
+		
+		if ((strcmp(line_buffer, "exit") == 0)) 
+			break;
 
 		status = son_process(line_buffer);
 		if (wait(&pid_status) == -1)

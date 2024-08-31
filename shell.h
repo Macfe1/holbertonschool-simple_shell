@@ -12,6 +12,9 @@
 #include <sys/wait.h>
 #include <errno.h>
 
+/* Environment variables */
+extern char **environ;
+
 /*Prototypes*/
 int main(void);
 int son_process(char *line_buffer);
@@ -19,4 +22,5 @@ void execvp_function(char **array, char *tmp_line_buffer);
 void malloc_error(char *tmp_line_buffer, char **array);
 int error_tmp_dup(char *tmp_line_buffer);
 int is_empty(char *line_buffer);
+char *get_env(char *key);
 #endif /*_SHELL_H_*/
