@@ -18,18 +18,47 @@ int error_tmp_dup(char *tmp_line_buffer)
 }
 
 /**
+ * fork_process - to create the son process
+ *
+ * @ line_buffer: where what teh user type in the shell
+ * @ tmp_line_buffer: a copy of the line buffer
+ * @ array: the array wiht the tokens
+ *
+ * Return:1 if success otherwise -1
+ */
+int fork_process(char *line_buffer, char *tmp_line_buffer, char **array)
+{
+	pid_t son_pid;
+	son_pid = fork();
+
+	if (son_pid == -1)
+	{
+		_freemalloc(tmp_line_buffer, array, 3);
+		free(line_buffer);
+		return (-1);
+	}
+	if (son_pid == 0)
+	{
+		execvp_function(array, tmp_line_buffer);
+		return (1);
+	}
+	_freemalloc(tmp_line_buffer, array, 0);
+
+	return (1);
+}
+
+/**
  * son_process - to create the son process with the fork
  *
  * @line_buffer: is what we received from the user
  *
- * Return: void
+ * Return: 1 if success
  */
 int son_process(char *line_buffer)
 {
 	char **array = NULL;
 	int words_count = 0;
 	char *token = NULL, *tmp_line_buffer = strdup(line_buffer);
-	pid_t son_pid;
 
 	if (error_tmp_dup(tmp_line_buffer))
 		return (-1);
@@ -54,18 +83,8 @@ int son_process(char *line_buffer)
 	array[words_count] = NULL;
 	if (array[0] == NULL)
 		return (-1);
-	son_pid = fork();
-	if (son_pid == -1)
-	{
-		_freemalloc(tmp_line_buffer, array, 3);
-		free(line_buffer);
-		return (1);
-	}
-	if (son_pid == 0)
-	{
-		execvp_function(array, tmp_line_buffer);
-		exit(1);
-	}
-	_freemalloc(tmp_line_buffer, array, 0);
+	
+	fork_process(line_buffer, tmp_line_buffer, array);
+
 	return (1);
 }
