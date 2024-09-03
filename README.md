@@ -13,7 +13,7 @@ git clone git@github.com:Macfe1/holbertonschool-simple_shell.git
 This will create a local copy of the repository on your machine.
 
 
-###To compile the shell, use GCC compiler with the following command:
+### To compile the shell, use GCC compiler with the following command:
 
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
