@@ -23,4 +23,5 @@ void malloc_error(char *tmp_line_buffer, char **array);
 int error_tmp_dup(char *tmp_line_buffer);
 int is_empty(char *line_buffer);
 char *get_env(char *key);
+int _getline_checker(ssize_t gl_rvalue, char *gl_buffer, int interactive_mode);
 #endif /*_SHELL_H_*/
