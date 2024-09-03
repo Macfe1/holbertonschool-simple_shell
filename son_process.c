@@ -20,15 +20,16 @@ int error_tmp_dup(char *tmp_line_buffer)
 /**
  * fork_process - to create the son process
  *
- * @ line_buffer: where what teh user type in the shell
- * @ tmp_line_buffer: a copy of the line buffer
- * @ array: the array wiht the tokens
+ * @line_buffer: where what teh user type in the shell
+ * @tmp_line_buffer: a copy of the line buffer
+ * @array: the array wiht the tokens
  *
  * Return:1 if success otherwise -1
  */
 int fork_process(char *line_buffer, char *tmp_line_buffer, char **array)
 {
 	pid_t son_pid;
+
 	son_pid = fork();
 
 	if (son_pid == -1)
@@ -83,7 +84,7 @@ int son_process(char *line_buffer)
 	array[words_count] = NULL;
 	if (array[0] == NULL)
 		return (-1);
-	
+
 	fork_process(line_buffer, tmp_line_buffer, array);
 
 	return (1);

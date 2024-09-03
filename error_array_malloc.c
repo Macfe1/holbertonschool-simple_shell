@@ -19,7 +19,7 @@ void _freemalloc(char *tmp_line_buffer, char **array, int err_message)
 		perror("error in the strdup");
 	if (err_message == 3)
 		perror("error in the fork");
-	
+
 	free(tmp_line_buffer);
 	for (; array[iterator_to_free] != NULL; iterator_to_free++)
 	{
