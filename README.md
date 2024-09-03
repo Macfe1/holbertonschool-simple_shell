@@ -19,7 +19,7 @@ This will create a local copy of the repository on your machine.
 
 # How it works?
 
-##Interactive mode
+## Interactive mode
 
 To start the shell in interactive mode lets run the executable file like this:
 
