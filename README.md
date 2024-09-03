@@ -8,40 +8,38 @@ The Simple Shell is a basic command-line interpreter designed to provide fundame
 
 ### To dowland the shell you should clone the repository like this:
 
-git clone git@github.com:Macfe1/holbertonschool-simple_shell.git
+`git clone git@github.com:Macfe1/holbertonschool-simple_shell.git`
 
 This will create a local copy of the repository on your machine.
 
 
 ### To compile the shell, use GCC compiler with the following command:
 
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+`gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
 
 # How it works?
 
-##Interactive mode
+## Interactive mode
 
 To start the shell in interactive mode lets run the executable file like this:
 
-* ./hsh
+* `./hsh`
 
 To use a comand in the shell use:
 
-* #cisfun /bin/ls
-* #cisfun ls
+* `#cisfun /bin/ls`
+* `#cisfun ls`
 
 To start the shell in non-interactiveinteractive mode lets run the executable file like this:
 
-* echo "/bin/ls" | ./hsh
-* cat test_ls_2 | ./hsh
+* `echo "/bin/ls" | ./hsh`
+* `cat test_ls_2 | ./hsh`
 
 To exit the shell use:
 
 * Ctrl + C
 * Ctrl + D
 * exit in interactive mode
-
-
 
 ## Updating the Authors File
 
