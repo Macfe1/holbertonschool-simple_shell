@@ -11,7 +11,7 @@
 void execvp_function(char **array, char *tmp_line_buffer)
 {
 	int word_counter_free = 0;
-	
+
 	if (execvp(array[0], array) == -1)
 	{
 		perror("execvp error");

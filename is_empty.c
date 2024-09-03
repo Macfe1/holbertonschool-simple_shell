@@ -12,8 +12,8 @@ int is_empty(char *line_buffer)
 	while (*line_buffer)
 	{
 		if (!strchr(SEPARATOR, *line_buffer))
-			return(0);
+			return (0);
 		line_buffer++;
 	}
-	return(1);
+	return (1);
 }

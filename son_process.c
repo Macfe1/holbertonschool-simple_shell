@@ -32,13 +32,13 @@ int son_process(char *line_buffer)
 	pid_t son_pid;
 
 	if (error_tmp_dup(tmp_line_buffer))
-		return(-1);
+		return (-1);
 	array = (char **) malloc(MAX_WORDS * sizeof(char *));
 	if (array == NULL)
 	{
 		malloc_error(tmp_line_buffer, array);
 		perror("error in memory allocation");
-		return(-1);
+		return (-1);
 	}
 	token = strtok(tmp_line_buffer, "\n ");
 	while (token != NULL)
@@ -54,16 +54,16 @@ int son_process(char *line_buffer)
 		words_count++;
 	}
 	array[words_count] = NULL;
-	
+
 	if (array[0] == NULL)
-		return(-1);
+		return (-1);
 
 	son_pid = fork();
 	if (son_pid == -1)
 	{
 		perror("error in the fork");
 		free(tmp_line_buffer);
-		for (;words_free < words_count; words_free++)
+		for ( ; words_free < words_count; words_free++)
 				free(array[words_free]);
 		free(array);
 		free(line_buffer);
@@ -75,7 +75,7 @@ int son_process(char *line_buffer)
 		exit(1);
 	}
 	free(tmp_line_buffer);
-	for (;words_free < words_count; words_free++)
+	for ( ; words_free < words_count; words_free++)
 		free(array[words_free]);
 	free(array);
 	return (1);

@@ -42,18 +42,18 @@ int main(void)
 
 		if (line_buffer[0] == '\0')
 			continue;
-		
+
 		if (is_empty(line_buffer))
 			continue;
 
-		if ((strcmp(line_buffer, "env") == 0) || 
+		if ((strcmp(line_buffer, "env") == 0) ||
 				(strcmp(line_buffer, "printenv") == 0))
 		{
 			get_env(NULL);
 			continue;
 		}
-		
-		if ((strcmp(line_buffer, "exit") == 0)) 
+
+		if ((strcmp(line_buffer, "exit") == 0))
 			break;
 
 		status = son_process(line_buffer);
@@ -63,8 +63,8 @@ int main(void)
 			perror("Error in wait in the father process");
 			exit(1);
 		}
-		
-	}	
+
+	}
 	free(line_buffer);
 	return (0);
 }
