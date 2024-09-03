@@ -8,7 +8,7 @@ The Simple Shell is a basic command-line interpreter designed to provide fundame
 
 ### To dowland the shell you should clone the repository like this:
 
-git clone git@github.com:Macfe1/holbertonschool-simple_shell.git
+´git clone git@github.com:Macfe1/holbertonschool-simple_shell.git´
 
 This will create a local copy of the repository on your machine.
 
